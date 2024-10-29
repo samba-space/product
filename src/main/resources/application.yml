@@ -1,14 +1,16 @@
 spring:
   application:
     name: musinsa
-  h2:
-    console:
-      enabled: true
   datasource:
-    driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:musinsa;MODE=MySQL
-    username: sa
-    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://my-aurora.cluster-ct0gsiiwy4xd.ap-northeast-2.rds.amazonaws.com:3306/mydatabase
+    username: admin
+    password: qudtjf12?!
   jpa:
-    defer-datasource-initialization: true
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
     open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true

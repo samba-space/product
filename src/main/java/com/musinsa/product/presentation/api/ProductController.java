@@ -43,4 +43,9 @@ public class ProductController {
         productService.updateProduct(productId, request);
         return ResponseEntity.ok().build();
     }
+
+    @GetMapping(path = "/health")
+    public String health() {
+        return "ok";
+    }
 }
