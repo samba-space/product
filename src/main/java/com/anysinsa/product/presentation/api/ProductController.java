@@ -22,8 +22,8 @@ public class ProductController {
         return ResponseEntity.ok().body(productService.findProducts());
     }
 
-    @GetMapping(path = "/api/v1/products/health")
+    @GetMapping(path = "/health")
     public String health() {
-        return "ok-man-4";
+        return "health-product";
     }
 }
