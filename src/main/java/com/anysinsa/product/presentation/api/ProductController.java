@@ -22,7 +22,7 @@ public class ProductController {
         return ResponseEntity.ok().body(productService.findProducts());
     }
 
-    @GetMapping(path = "/health")
+    @GetMapping(path = "/api/v1/products/health")
     public String health() {
         return "health-product";
     }
