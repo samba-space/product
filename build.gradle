@@ -1,7 +1,7 @@
 plugins {
     id 'java'
     id 'org.springframework.boot' version '3.1.5'
-    id 'io.spring.dependency-management' version '1.1.5'
+    id 'io.spring.dependency-management' version '1.1.3'
     id 'com.diffplug.spotless' version '6.25.0'
     id 'org.asciidoctor.jvm.convert' version '3.3.2'
 }
@@ -25,33 +25,48 @@ configurations {
 }
 
 ext {
-    set('springCloudVersion', "2022.0.4")  // 또는 "2022.0.4"
+    set('springCloudVersion', "2022.0.4")
 }
-
 dependencyManagement {
     imports {
         mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
     }
 }
 
+
 dependencies {
-    implementation 'com.mysql:mysql-connector-j:8.0.33'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0'
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+    implementation 'org.springframework.boot:spring-boot-starter-cache'
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
-    // X-Ray 의존성 수정
+
+    implementation 'com.mysql:mysql-connector-j'
+    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0'
+    implementation 'com.github.ben-manes.caffeine:caffeine'
+    implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
+    implementation 'com.blazebit:blaze-persistence-integration-querydsl-expressions-jakarta:1.6.11'
+
     implementation platform('com.amazonaws:aws-xray-recorder-sdk-bom:2.14.0')
-    implementation 'com.amazonaws:aws-xray-recorder-sdk-spring:2.14.0'
-    implementation 'com.amazonaws:aws-xray-recorder-sdk-aws-sdk-v2:2.14.0'
+    implementation 'com.amazonaws:aws-xray-recorder-sdk-spring'
+    implementation 'com.amazonaws:aws-xray-recorder-sdk-aws-sdk-v2'
+
+    annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jakarta"
     annotationProcessor "jakarta.annotation:jakarta.annotation-api"
     annotationProcessor "jakarta.persistence:jakarta.persistence-api"
+
     runtimeOnly 'com.h2database:h2'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    testImplementation 'org.springframework.restdocs:spring-restdocs-mockmvc'
+    asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
 }
 
 tasks.named('test') {
     useJUnitPlatform()
 //    outputs.dir snippetsDir
 }
+
+
+

@@ -2,11 +2,10 @@ package com.anysinsa.product.domain;
 
 import jakarta.persistence.*;
 
-import org.hibernate.annotations.SQLRestriction;
-
 import com.anysinsa.common.domain.BaseTimeEntity;
+import org.hibernate.annotations.Where;
 
-@SQLRestriction("deleted = false")
+@Where(clause = "deleted = false")
 @Entity
 @Table(name = "product")
 public class Product extends BaseTimeEntity {

@@ -9,7 +9,6 @@ import org.springframework.web.ErrorResponse;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import org.springframework.web.method.annotation.HandlerMethodValidationException;
 
 import com.anysinsa.product.application.exception.NotExistBrandException;
 import com.anysinsa.product.application.exception.NotExistCategoryException;
@@ -43,8 +42,8 @@ public class GlobalExceptionHandler {
         return ErrorResponse.create(e, e.getStatusCode(), errorMessages);
     }
 
-    @ExceptionHandler(HandlerMethodValidationException.class)
-    public ErrorResponse handleMethodValidationException(HandlerMethodValidationException e) {
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ErrorResponse handleMethodValidationException(MethodArgumentNotValidException e) {
         logger.error(e.getMessage(), e);
         return ErrorResponse.create(e, e.getStatusCode(), e.getMessage());
     }
