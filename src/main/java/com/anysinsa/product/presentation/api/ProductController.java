@@ -2,6 +2,7 @@ package com.anysinsa.product.presentation.api;
 
 import java.util.List;
 
+import com.anysinsa.product.application.dto.ProductDetailResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +21,11 @@ public class ProductController {
     @GetMapping(path = "/api/v1/products")
     public ResponseEntity<List<Product>> findProducts() {
         return ResponseEntity.ok().body(productService.findProducts());
+    }
+
+    @GetMapping(path = "/api/v1/products/{id}")
+    public ResponseEntity<ProductDetailResponse> findProductById(@PathVariable Long id) {
+        return ResponseEntity.ok().body(productService.findProductById(id));
     }
 
     @GetMapping(path = "/api/v1/products/health")
