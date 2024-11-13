@@ -19,6 +19,9 @@ public class OpenTelemetryConfig {
     }
     @Bean
     public ObservationPredicate observationPredicate() {
-        return (name, context) -> !context.getContextualName().equals("/api/v1/products/health");
+        return (name, context) -> {
+            String contextualName = context.getContextualName();
+            return contextualName != null && !contextualName.equals("/api/v1/products/health");
+        };
     }
 }

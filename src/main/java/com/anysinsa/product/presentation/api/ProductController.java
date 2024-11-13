@@ -25,7 +25,7 @@ public class ProductController {
     public ResponseEntity<List<Product>> findProducts() {
         return ResponseEntity.ok().body(productService.findProducts());
     }
-    
+
     @Observed
     @GetMapping(path = "/api/v1/products/{id}")
     public ResponseEntity<ProductDetailResponse> findProductById(@PathVariable Long id) {
