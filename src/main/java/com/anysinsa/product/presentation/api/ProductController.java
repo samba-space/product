@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 import com.anysinsa.product.application.ProductService;
 import com.anysinsa.product.domain.Product;
 
-@Observed
 @RestController
 public class ProductController {
 
@@ -19,12 +18,12 @@ public class ProductController {
     public ProductController(ProductService productService) {
         this.productService = productService;
     }
-
+    @Observed
     @GetMapping(path = "/api/v1/products")
     public ResponseEntity<List<Product>> findProducts() {
         return ResponseEntity.ok().body(productService.findProducts());
     }
-
+    @Observed
     @GetMapping(path = "/api/v1/products/{id}")
     public ResponseEntity<ProductDetailResponse> findProductById(@PathVariable Long id) {
         return ResponseEntity.ok().body(productService.findProductById(id));
