@@ -11,8 +11,11 @@ public class FeignConfig {
     public RequestInterceptor traceIdInterceptor() {
         return template -> {
             String traceId = MDC.get("traceId");
+            String spanId = MDC.get("spanId");
             if (traceId != null) {
                 template.header("X-B3-TraceId", traceId);
+                template.header("X-B3-SpanId", spanId);
+                template.header("X-B3-Sampled", "1");
             }
         };
     }
