@@ -1,6 +1,14 @@
 server:
   port: 8080  # 공통 포트 설정
-
+management:
+  tracing:
+    sampling:
+      probability: 1.0
+    enabled: true
+  otlp:
+    tracing:
+      endpoint: http://localhost:4317
+      protocol: grpc
 spring:
   application:
     name: product
@@ -20,11 +28,17 @@ spring:
     properties:
       hibernate:
         format_sql: true
-management:
-  tracing:
-    sampling:
-      probability: 1.0
-    enabled: true
-  otlp:
-    tracing:
-      endpoint: http://localhost:4317
+#spring:
+#  application:
+#    name: product
+#  h2:
+#    console:
+#      enabled: true
+#  datasource:
+#    driver-class-name: org.h2.Driver
+#    url: jdbc:h2:mem:product;MODE=MySQL
+#    username: sa
+#    password:
+#  jpa:
+#    defer-datasource-initialization: true
+#    open-in-view: false

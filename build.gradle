@@ -51,12 +51,9 @@ dependencies {
 //    implementation platform('com.amazonaws:aws-xray-recorder-sdk-bom:2.14.0')
 //    implementation 'com.amazonaws:aws-xray-recorder-sdk-spring'
 //    implementation 'com.amazonaws:aws-xray-recorder-sdk-aws-sdk-v2'
-    implementation 'io.opentelemetry:opentelemetry-api:1.28.0'
-    implementation 'io.opentelemetry:opentelemetry-sdk:1.28.0'
-    implementation 'io.opentelemetry:opentelemetry-exporter-otlp:1.28.0'
-    implementation 'io.opentelemetry.semconv:opentelemetry-semconv:1.28.0-alpha'
-    implementation 'io.micrometer:micrometer-tracing-bridge-otel'  // 추가
-    implementation 'org.springframework.boot:spring-boot-starter-actuator'  // 추가
+    implementation 'io.micrometer:micrometer-tracing-bridge-otel'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'io.opentelemetry:opentelemetry-api'
 
     annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jakarta"
     annotationProcessor "jakarta.annotation:jakarta.annotation-api"
