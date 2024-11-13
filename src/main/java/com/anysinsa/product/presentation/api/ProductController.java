@@ -2,7 +2,6 @@ package com.anysinsa.product.presentation.api;
 
 import java.util.List;
 
-import com.amazonaws.xray.spring.aop.XRayEnabled;
 import com.anysinsa.product.application.dto.ProductDetailResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +10,6 @@ import com.anysinsa.product.application.ProductService;
 import com.anysinsa.product.domain.Product;
 
 @RestController
-@XRayEnabled
 public class ProductController {
 
     private final ProductService productService;

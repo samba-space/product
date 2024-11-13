@@ -55,8 +55,7 @@ dependencies {
     implementation 'io.opentelemetry:opentelemetry-sdk:1.28.0'
     implementation 'io.opentelemetry:opentelemetry-exporter-otlp:1.28.0'
     implementation 'io.opentelemetry:opentelemetry-sdk-extension-autoconfigure:1.28.0'
-    implementation 'io.opentelemetry.instrumentation:opentelemetry-instrumentation-annotations:1.28.0'
-    implementation 'io.opentelemetry:opentelemetry-semconv:1.28.0'  // 이걸로 변경
+    implementation 'io.opentelemetry.semconv:opentelemetry-semconv:1.28.0-alpha'  // 이게 올바른 의존성입니다
 
     annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jakarta"
     annotationProcessor "jakarta.annotation:jakarta.annotation-api"
