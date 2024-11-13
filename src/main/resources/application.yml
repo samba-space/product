@@ -9,6 +9,15 @@ management:
     tracing:
       endpoint: http://localhost:4317
       protocol: grpc
+otel:
+  exporter:
+    otlp:
+      endpoint: http://localhost:4317
+logging:
+  pattern:
+    level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+  level:
+    io.opentelemetry: DEBUG
 spring:
   application:
     name: product
