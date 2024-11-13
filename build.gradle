@@ -48,9 +48,15 @@ dependencies {
     implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
     implementation 'com.blazebit:blaze-persistence-integration-querydsl-expressions-jakarta:1.6.11'
 
-    implementation platform('com.amazonaws:aws-xray-recorder-sdk-bom:2.14.0')
-    implementation 'com.amazonaws:aws-xray-recorder-sdk-spring'
-    implementation 'com.amazonaws:aws-xray-recorder-sdk-aws-sdk-v2'
+//    implementation platform('com.amazonaws:aws-xray-recorder-sdk-bom:2.14.0')
+//    implementation 'com.amazonaws:aws-xray-recorder-sdk-spring'
+//    implementation 'com.amazonaws:aws-xray-recorder-sdk-aws-sdk-v2'
+    implementation 'io.opentelemetry:opentelemetry-api:1.28.0'
+    implementation 'io.opentelemetry:opentelemetry-sdk:1.28.0'
+    implementation 'io.opentelemetry:opentelemetry-exporter-otlp:1.28.0'
+    implementation 'io.opentelemetry:opentelemetry-sdk-extension-autoconfigure:1.28.0'
+    implementation 'io.opentelemetry.instrumentation:opentelemetry-instrumentation-annotations:1.28.0'
+    implementation 'io.opentelemetry:opentelemetry-semconv:1.28.0'  // 이걸로 변경
 
     annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jakarta"
     annotationProcessor "jakarta.annotation:jakarta.annotation-api"
