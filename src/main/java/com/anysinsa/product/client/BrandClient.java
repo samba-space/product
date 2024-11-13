@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(name = "brand-service", url = "http://anysinsa-alb-1164360136.ap-northeast-2.elb.amazonaws.com")
 public interface BrandClient {
-    @GetMapping("/api/brands/{brandId}")
+    @GetMapping("/api/v1/brands/{brandId}")
     BrandResponseDTO findBrand(@PathVariable Long brandId);
 }
 
