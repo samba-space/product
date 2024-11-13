@@ -1,5 +1,6 @@
 package com.anysinsa.common.config;
 
+import io.micrometer.core.instrument.config.MeterFilter;
 import io.micrometer.observation.ObservationPredicate;
 import io.opentelemetry.exporter.otlp.trace.OtlpGrpcSpanExporter;
 import org.springframework.beans.factory.annotation.Value;
@@ -17,11 +18,12 @@ public class OpenTelemetryConfig {
                 .setEndpoint(endpoint)
                 .build();
     }
+    
     @Bean
-    public ObservationPredicate observationPredicate() {
-        return (name, context) -> {
-            String contextualName = context.getContextualName();
-            return contextualName != null && !contextualName.equals("/api/v1/products/health");
-        };
+    public MeterFilter meterFilter() {
+        return MeterFilter.deny(id -> {
+            String uri = id.getTag("uri");
+            return "/api/v1/products/health".equals(uri);
+        });
     }
 }
