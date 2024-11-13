@@ -1,6 +1,12 @@
 server:
   port: 8080  # 공통 포트 설정
 management:
+  observations:
+    enable:
+      http:
+        server:
+          requests:
+            /api/v1/products/health: false
   tracing:
     sampling:
       probability: 1.0
