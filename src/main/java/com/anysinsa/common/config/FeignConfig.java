@@ -1,18 +1,19 @@
 package com.anysinsa.common.config;
 
 import feign.RequestInterceptor;
-import io.opentelemetry.api.OpenTelemetry;
-import io.opentelemetry.api.trace.Span;
+import org.slf4j.MDC;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class FeignConfig {
     @Bean
-    public RequestInterceptor traceIdInterceptor(OpenTelemetry openTelemetry) {
+    public RequestInterceptor traceIdInterceptor() {
         return template -> {
-            Span span = openTelemetry.getTracer("feign").spanBuilder("feign-request").startSpan();
-            template.header("traceparent", span.getSpanContext().getTraceId());
+            String traceId = MDC.get("traceId");
+            if (traceId != null) {
+                template.header("X-B3-TraceId", traceId);
+            }
         };
     }
 }

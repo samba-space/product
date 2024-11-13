@@ -3,12 +3,14 @@ package com.anysinsa.product.presentation.api;
 import java.util.List;
 
 import com.anysinsa.product.application.dto.ProductDetailResponse;
+import io.micrometer.observation.annotation.Observed;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.anysinsa.product.application.ProductService;
 import com.anysinsa.product.domain.Product;
 
+@Observed
 @RestController
 public class ProductController {
 
