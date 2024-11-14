@@ -44,6 +44,12 @@ phases:
       - echo Updating appspec.yml with new task definition...
       - TASK_DEFINITION_ARN=$(echo $NEW_TASK_INFO | jq -r '.taskDefinition.taskDefinitionArn')
       - sed -i.bak -e "s|<TASK_DEFINITION>|$TASK_DEFINITION_ARN|g" appspec.yml
+
+cache:
+  paths:
+    - '/root/.gradle/caches/**/*'
+    - '/root/.gradle/wrapper/**/*'
+
 artifacts:
   files:
     - appspec.yml
