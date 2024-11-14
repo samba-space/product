@@ -27,13 +27,13 @@ public class ProductController {
 
     @GetMapping(path = "/api/v1/products")
     public ResponseEntity<List<Product>> findProducts() {
-        logger.info("call ProductController::findProducts");
+        logger.info("findProducts");
         return ResponseEntity.ok().body(productService.findProducts());
     }
 
     @GetMapping(path = "/api/v1/products/{id}")
     public ResponseEntity<ProductDetailResponse> findProductById(@PathVariable Long id) {
-        logger.info("call ProductController::findProductById::{}", id);
+        logger.info("findProductById::{}", id);
         return ResponseEntity.ok().body(productService.findProductById(id));
     }
 
