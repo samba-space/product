@@ -3,9 +3,7 @@ package com.anysinsa.product.domain;
 import jakarta.persistence.*;
 
 import com.anysinsa.common.domain.BaseTimeEntity;
-import org.hibernate.annotations.Where;
 
-@Where(clause = "deleted = false")
 @Entity
 @Table(name = "product")
 public class Product extends BaseTimeEntity {
@@ -22,9 +20,6 @@ public class Product extends BaseTimeEntity {
     private Long categoryId;
 
     @Embedded private Money price;
-
-    @Column(name = "deleted")
-    private Boolean deleted = Boolean.FALSE;
 
     protected Product() {}
 
@@ -48,14 +43,6 @@ public class Product extends BaseTimeEntity {
 
     public Money getPrice() {
         return price;
-    }
-
-    public Boolean getDeleted() {
-        return deleted;
-    }
-
-    public void delete() {
-        deleted = Boolean.TRUE;
     }
 
     public void updateFrom(Product product) {
