@@ -56,7 +56,7 @@ dependencies {
     implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
 
     implementation 'com.mysql:mysql-connector-j'
-    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0'
+//    implementation 'com.github.gavlyukovskiy:p6spy-spring-boot-starter:1.9.0'
     implementation 'com.github.ben-manes.caffeine:caffeine'
     implementation 'com.querydsl:querydsl-jpa:5.0.0:jakarta'
     implementation 'com.blazebit:blaze-persistence-integration-querydsl-expressions-jakarta:1.6.11'
