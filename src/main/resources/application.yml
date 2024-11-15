@@ -1,5 +1,9 @@
 server:
   port: 8080  # 공통 포트 설정
+  tomcat:
+#    max-threads: 500
+#    max-connections: 20000
+#    accept-count: 1000
 management:
   tracing:
     sampling:
@@ -10,37 +14,14 @@ management:
       endpoint: http://localhost:4317
       protocol: grpc
 otel:
+  service:
+    name: ${spring.application.name}
   exporter:
     otlp:
       endpoint: http://localhost:4317
 logging:
   pattern:
     level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
-spring:
-  application:
-    name: product
-  h2:
-    console:
-      enabled: true
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://product.cluster-ct0gsiiwy4xd.ap-northeast-2.rds.amazonaws.com:3306/product
-    username: admin
-    password: qudtjf12?!
-    hikari:
-      maximum-pool-size: 100
-      minimum-idle: 10
-      connection-timeout: 30000
-      idle-timeout: 600000
-      max-lifetime: 1800000
-  jpa:
-    database-platform: org.hibernate.dialect.MySQL8Dialect
-    hibernate:
-      ddl-auto: update
-    open-in-view: false
-    properties:
-      hibernate:
-        format_sql: false
 #spring:
 #  application:
 #    name: product
@@ -48,13 +29,38 @@ spring:
 #    console:
 #      enabled: true
 #  datasource:
-#    driver-class-name: org.h2.Driver
-#    url: jdbc:h2:mem:product;MODE=MySQL
-#    username: sa
-#    password:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://product.cluster-ct0gsiiwy4xd.ap-northeast-2.rds.amazonaws.com:3306/product
+#    username: admin
+#    password: qudtjf12?!
+#    hikari:
+#      maximum-pool-size: 100
+#      minimum-idle: 10
+#      connection-timeout: 30000
+#      idle-timeout: 600000
+#      max-lifetime: 1800000
 #  jpa:
-#    defer-datasource-initialization: true
+#    database-platform: org.hibernate.dialect.MySQL8Dialect
+#    hibernate:
+#      ddl-auto: update
 #    open-in-view: false
 #    properties:
 #      hibernate:
 #        format_sql: false
+spring:
+  application:
+    name: product
+  h2:
+    console:
+      enabled: true
+  datasource:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:product;MODE=MySQL
+    username: sa
+    password:
+  jpa:
+    defer-datasource-initialization: true
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: false
