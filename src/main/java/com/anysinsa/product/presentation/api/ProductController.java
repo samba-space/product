@@ -39,6 +39,6 @@ public class ProductController {
 
     @GetMapping(path = "/api/v1/products/health")
     public String health() {
-        return "health-product3";
+        return "health-product";
     }
 }
