@@ -29,8 +29,6 @@ public class DatabaseConfig {
             @Value("${spring.datasource.hikari.idle-timeout}") long idleTimeout,
             @Value("${spring.datasource.hikari.max-lifetime}") long maxLifetime) {
 
-        System.out.println("abcdTest:" + url);
-        logger.info("abcdTest: {}", url);
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl(url);
         config.setUsername(username);
