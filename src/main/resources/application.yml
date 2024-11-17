@@ -1,9 +1,10 @@
 server:
   port: 8080  # 공통 포트 설정
-#  tomcat:
-#    max-threads: 500
-#    max-connections: 20000
-#    accept-count: 1000
+  tomcat:
+    max-threads: 500
+    max-connections: 20000
+    accept-count: 1000
+    connection-timeout: 30000  # 30초
 management:
   tracing:
     sampling:

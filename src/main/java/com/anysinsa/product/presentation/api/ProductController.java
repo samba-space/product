@@ -2,7 +2,6 @@ package com.anysinsa.product.presentation.api;
 
 import java.util.List;
 
-import com.anysinsa.common.handler.GlobalExceptionHandler;
 import com.anysinsa.product.application.dto.ProductDetailResponse;
 import io.micrometer.observation.annotation.Observed;
 import org.slf4j.Logger;
