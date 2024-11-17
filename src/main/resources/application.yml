@@ -60,6 +60,12 @@ spring:
 #    url: jdbc:otel:mysql://localhost:3306/test
 #    username: test
 #    password: test
+#    hikari:
+#      maximum-pool-size: 100
+#      minimum-idle: 10
+#      connection-timeout: 30000
+#      idle-timeout: 600000
+#      max-lifetime: 1800000
 #  jpa:
 #    defer-datasource-initialization: true
 #    open-in-view: false
