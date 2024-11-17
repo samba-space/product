@@ -41,6 +41,14 @@ public class DatabaseConfig {
         // 원래 드라이버 설정
         config.addDataSourceProperty("opentelemetry.jdbc.wrapped-driver", "com.mysql.cj.jdbc.Driver");
 
+        // 복제 관련 설정(local)
+//        config.addDataSourceProperty("readReplicas", "1");
+//        config.addDataSourceProperty("replicationEnableJMX", "true");
+//        config.addDataSourceProperty("allowMasterDownConnections", "true");
+//        config.addDataSourceProperty("allowReplicaDownConnections", "true");
+
+        config.addDataSourceProperty("enableClusterAwareFailover", "true");
+
         return new HikariDataSource(config);
     }
 

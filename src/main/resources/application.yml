@@ -4,7 +4,7 @@ server:
     max-threads: 500
     max-connections: 20000
     accept-count: 1000
-    connection-timeout: 30000  # 30초
+#    connection-timeout: 30000  # 30초
 management:
   tracing:
     sampling:
@@ -31,9 +31,10 @@ spring:
       enabled: true
   datasource:
     driver-class-name: io.opentelemetry.instrumentation.jdbc.OpenTelemetryDriver
-#    driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:otel:mysql://product.cluster-ct0gsiiwy4xd.ap-northeast-2.rds.amazonaws.com:3306/product
-#    url: jdbc:mysql://product.cluster-ct0gsiiwy4xd.ap-northeast-2.rds.amazonaws.com:3306/product
+#    url: jdbc:otel:mysql://product.cluster-ct0gsiiwy4xd.ap-northeast-2.rds.amazonaws.com:3306/product
+#    url: jdbc:otel:mysql:replication://product.cluster-ct0gsiiwy4xd.ap-northeast-2.rds.amazonaws.com:3306,product.cluster-ro-ct0gsiiwy4xd.ap-northeast-2.rds.amazonaws.com:3306/product
+    url: jdbc:otel:mysql:aurora://product.cluster-ct0gsiiwy4xd.ap-northeast-2.rds.amazonaws.com:3306,product.cluster-ro-ct0gsiiwy4xd.ap-northeast-2.rds.amazonaws.com:3306/product
+
     username: admin
     password: qudtjf12?!
     hikari:
@@ -58,7 +59,7 @@ spring:
 #      enabled: true
 #  datasource:
 #    driver-class-name: io.opentelemetry.instrumentation.jdbc.OpenTelemetryDriver
-#    url: jdbc:otel:mysql://localhost:3306/test
+#    url: jdbc:otel:mysql:replication://localhost:3306,localhost:3307,localhost:3308/test
 #    username: test
 #    password: test
 #    hikari:
