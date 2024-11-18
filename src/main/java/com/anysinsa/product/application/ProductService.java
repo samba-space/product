@@ -30,17 +30,11 @@ public class ProductService {
         this.brandClient = brandClient;
         this.categoryClient = categoryClient;
     }
-    @Transactional
-    public void saveProduct() {
-        productRepository.save(new Product(id++, 1000L, new Money(new BigDecimal(10))));
-    }
 
-    @Transactional(readOnly = true)
     public List<Product> findProducts() {
         return productRepository.findAll();
     }
 
-    @Transactional(readOnly = true)
     public ProductDetailResponse findProductById(Long id) {
         Product findProduct = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("상품을 찾을 수 없습니다."));
@@ -49,5 +43,11 @@ public class ProductService {
         CategoryResponseDTO findCategory = categoryClient.findCategory(findProduct.getCategoryId());
 
         return new ProductDetailResponse(findBrand.brandName(), findCategory.categoryName(), findProduct.getPrice().getValue());
+    }
+
+    @Transactional(readOnly = true)
+    public Product findDetailProductById(Long id) {
+        return productRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("상품을 찾을 수 없습니다."));
     }
 }
