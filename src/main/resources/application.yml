@@ -10,6 +10,15 @@ management:
     sampling:
       probability: 1.0
     enabled: true
+    propagation:
+      type: b3
+    baggage:
+      enabled: true
+    observations:
+      http:
+        server:
+          requests:
+            name: http.server.requests
   otlp:
     tracing:
       endpoint: http://localhost:4317
