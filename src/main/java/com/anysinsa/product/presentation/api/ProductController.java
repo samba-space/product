@@ -32,7 +32,7 @@ public class ProductController {
 
     @GetMapping(path = "/api/v1/products/{id}")
     public ResponseEntity<ProductDetailResponse> findProductById(@PathVariable Long id) {
-        logger.info("findProductById::{}", id);
+        logger.info("findDetailProductById::{}", id);
         return ResponseEntity.ok().body(productService.findProductById(id));
     }
 
@@ -44,6 +44,6 @@ public class ProductController {
 
     @GetMapping(path = "/api/v1/products/health")
     public String health() {
-        return "health-product-changed";
+        return "health-product";
     }
 }
