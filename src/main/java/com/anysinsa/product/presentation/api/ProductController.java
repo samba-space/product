@@ -32,18 +32,18 @@ public class ProductController {
 
     @GetMapping(path = "/api/v1/products/{id}")
     public ResponseEntity<ProductDetailResponse> findProductById(@PathVariable Long id) {
-        logger.info("findDetailProductById::{}", id);
+        logger.info("findProductById::{}", id);
         return ResponseEntity.ok().body(productService.findProductById(id));
     }
 
     @GetMapping(path = "/api/v1/products/detail/{id}")
     public ResponseEntity<Product> findDetailProductById(@PathVariable Long id) {
-        logger.info("findProductById::{}", id);
+        logger.info("findDetailProductById::{}", id);
         return ResponseEntity.ok().body(productService.findDetailProductById(id));
     }
 
     @GetMapping(path = "/api/v1/products/health")
     public String health() {
-        return "health-product-new";
+        return "health-product";
     }
 }
