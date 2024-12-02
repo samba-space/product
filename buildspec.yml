@@ -6,9 +6,16 @@ env:
     AWS_DEFAULT_REGION: ap-northeast-2
     IMAGE_REPO_NAME: anysinsa/product
     IMAGE_TAG: latest
+    LC_ALL: C.UTF-8
+    LANG: en_US.UTF-8
+    LANGUAGE: en_US.UTF-8
+
 phases:
   pre_build:
     commands:
+      - export LC_ALL=C.UTF-8
+      - export LANG=en_US.UTF-8
+      - export LANGUAGE=en_US.UTF-8
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       - REPOSITORY_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME
