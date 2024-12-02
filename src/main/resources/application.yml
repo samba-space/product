@@ -31,8 +31,8 @@ spring:
       enabled: true
   datasource:
     driver-class-name: io.opentelemetry.instrumentation.jdbc.OpenTelemetryDriver
-    url: jdbc:otel:mysql://product.cluster-ct0gsiiwy4xd.ap-northeast-2.rds.amazonaws.com:3306/product
-#    url: jdbc:otel:mysql:replication://product.cluster-ct0gsiiwy4xd.ap-northeast-2.rds.amazonaws.com:3306,product.cluster-ro-ct0gsiiwy4xd.ap-northeast-2.rds.amazonaws.com:3306/product
+    url: jdbc:otel:mysql://anysinsa-cluster.cluster-ct0gsiiwy4xd.ap-northeast-2.rds.amazonaws.com:3306/product
+    #    url: jdbc:otel:mysql:replication://product.cluster-ct0gsiiwy4xd.ap-northeast-2.rds.amazonaws.com:3306,product.cluster-ro-ct0gsiiwy4xd.ap-northeast-2.rds.amazonaws.com:3306/product
     username: admin
     password: qudtjf12?!
     hikari:
