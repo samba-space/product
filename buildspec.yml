@@ -10,6 +10,11 @@ env:
 phases:
   pre_build:
     commands:
+      - echo Running tests...
+      - chmod +x ./gradlew
+      - ./gradlew test
+      - echo Test results:
+      - cat build/test-results/test/*.xml
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
       - REPOSITORY_URI=$AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME
@@ -19,8 +24,7 @@ phases:
     commands:
       - echo Build started on `date`
       - echo Building the Gradle project...
-      - chmod +x ./gradlew
-      - ./gradlew build
+      - ./gradlew build -x test
       - echo Building the Docker image...
       - docker build -t $REPOSITORY_URI:$IMAGE_TAG .
       - docker tag $REPOSITORY_URI:$IMAGE_TAG $REPOSITORY_URI:latest
@@ -44,11 +48,14 @@ phases:
       - echo Updating appspec.yml with new task definition...
       - TASK_DEFINITION_ARN=$(echo $NEW_TASK_INFO | jq -r '.taskDefinition.taskDefinitionArn')
       - sed -i.bak -e "s|<TASK_DEFINITION>|$TASK_DEFINITION_ARN|g" appspec.yml
+
 reports:
   junit:
     files:
       - 'build/test-results/test/*.xml'
     file-format: "JUNITXML"
+    discard-paths: false
+
 cache:
   paths:
     - '/root/.gradle/caches/**/*'
@@ -58,4 +65,3 @@ artifacts:
   files:
     - appspec.yml
     - imagedefinitions.json
-
