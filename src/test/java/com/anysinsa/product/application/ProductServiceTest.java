@@ -83,7 +83,7 @@ class ProductServiceTest {
         ProductDetailResponse response = productService.findProductById(productId);
 
         // then
-        assertThat(response.brandName()).isEqualTo("테스트 브랜드");
+        assertThat(response.brandName()).isEqualTo("테스트 브랜드1");
         assertThat(response.categoryName()).isEqualTo("테스트 카테고리");
         assertThat(response.price()).isEqualTo(new BigDecimal("10000"));
     }

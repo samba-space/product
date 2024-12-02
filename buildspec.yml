@@ -13,7 +13,7 @@ phases:
       - echo Running tests...
       - chmod +x ./gradlew
       - ./gradlew test
-      - echo Test results:
+      - echo Test results
       - cat build/test-results/test/*.xml
       - echo Logging in to Amazon ECR...
       - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
@@ -54,7 +54,6 @@ reports:
     files:
       - 'build/test-results/test/*.xml'
     file-format: "JUNITXML"
-    discard-paths: false
 
 cache:
   paths:
