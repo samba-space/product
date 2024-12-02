@@ -1,3 +1,4 @@
+# buildspec.yml
 version: 0.2
 
 env:
@@ -18,9 +19,11 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - echo Building the Gradle project...
+      - echo Running tests...
       - chmod +x ./gradlew
-      - ./gradlew build
+      - ./gradlew test --info
+      - echo Building the Gradle project...
+      - ./gradlew build -x test
       - echo Building the Docker image...
       - docker build -t $REPOSITORY_URI:$IMAGE_TAG .
       - docker tag $REPOSITORY_URI:$IMAGE_TAG $REPOSITORY_URI:latest
@@ -50,6 +53,7 @@ reports:
     files:
       - 'build/test-results/test/*.xml'
     file-format: "JUNITXML"
+    discard-paths: false
 
 cache:
   paths:
@@ -60,3 +64,5 @@ artifacts:
   files:
     - appspec.yml
     - imagedefinitions.json
+    - build/test-results/test/*.xml
+    - build/reports/tests/test/**/*

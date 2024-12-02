@@ -78,7 +78,15 @@ dependencies {
 //    asciidoctorExt 'org.springframework.restdocs:spring-restdocs-asciidoctor'
 }
 
+// build.gradle
 tasks.named('test') {
     useJUnitPlatform()
     exclude '**/ProductApplicationTests.*'
+    testLogging {
+        events "passed", "skipped", "failed"
+        showStandardStreams = true
+        exceptionFormat = 'full'
+        showCauses = true
+        showStackTraces = true
+    }
 }
