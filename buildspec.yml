@@ -45,6 +45,12 @@ phases:
       - TASK_DEFINITION_ARN=$(echo $NEW_TASK_INFO | jq -r '.taskDefinition.taskDefinitionArn')
       - sed -i.bak -e "s|<TASK_DEFINITION>|$TASK_DEFINITION_ARN|g" appspec.yml
 
+reports:
+  junit:
+    files:
+      - 'build/test-results/test/*.xml'
+    file-format: "JUNITXML"
+
 cache:
   paths:
     - '/root/.gradle/caches/**/*'

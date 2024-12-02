@@ -1,6 +1,5 @@
 package com.anysinsa.product.application;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import com.anysinsa.product.application.dto.BrandResponseDTO;
@@ -8,7 +7,6 @@ import com.anysinsa.product.application.dto.CategoryResponseDTO;
 import com.anysinsa.product.application.dto.ProductDetailResponse;
 import com.anysinsa.product.client.BrandClient;
 import com.anysinsa.product.client.CategoryClient;
-import com.anysinsa.product.domain.Money;
 import io.micrometer.observation.annotation.Observed;
 import org.springframework.stereotype.Service;
 
