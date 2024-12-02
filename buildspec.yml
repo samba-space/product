@@ -7,6 +7,7 @@ env:
     IMAGE_REPO_NAME: anysinsa/product
     IMAGE_TAG: latest
     LANG: ko_KR.UTF-8
+    LC_ALL: ko_KR.UTF-8
 
 phases:
   pre_build:
