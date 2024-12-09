@@ -35,7 +35,7 @@ env:
   ECR_REPOSITORY: anysinsa/product           # set this to your Amazon ECR repository name
   ECS_SERVICE: product-service                 # set this to your Amazon ECS service name
   ECS_CLUSTER: PrdAnysinsaCluster                 # set this to your Amazon ECS cluster name
-  ECS_TASK_DEFINITION: product-service-task # set this to the path to your Amazon ECS task definition
+  ECS_TASK_DEFINITION: arn:aws:ecs:ap-northeast-2:026090537156:task-definition/product-service-task:94 # set this to the path to your Amazon ECS task definition
                                                # file, e.g. .aws/task-definition.json
   CONTAINER_NAME: product-container           # set this to the name of the container in the
                                                # containerDefinitions section of your task definition
