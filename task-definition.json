@@ -1,0 +1,134 @@
+{
+    "taskDefinition": {
+        "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:026090537156:task-definition/product-service-task:96",
+        "containerDefinitions": [
+            {
+                "name": "product-container",
+                "image": "026090537156.dkr.ecr.ap-northeast-2.amazonaws.com/anysinsa/product:d9f0d9e581342eb91f45375c921e1b69cdad0455",
+                "cpu": 0,
+                "portMappings": [
+                    {
+                        "containerPort": 8080,
+                        "hostPort": 8080,
+                        "protocol": "tcp",
+                        "name": "container-8080",
+                        "appProtocol": "http"
+                    }
+                ],
+                "essential": true,
+                "environment": [
+                    {
+                        "name": "OTEL_SERVICE_NAME",
+                        "value": "product-service"
+                    },
+                    {
+                        "name": "OTEL_EXPORTER_OTLP_ENDPOINT",
+                        "value": "http://localhost:4317"
+                    }
+                ],
+                "mountPoints": [],
+                "volumesFrom": [],
+                "logConfiguration": {
+                    "logDriver": "awslogs",
+                    "options": {
+                        "awslogs-group": "/ecs/app/product-service",
+                        "mode": "non-blocking",
+                        "awslogs-create-group": "true",
+                        "max-buffer-size": "25m",
+                        "awslogs-region": "ap-northeast-2",
+                        "awslogs-stream-prefix": "ecs"
+                    }
+                },
+                "systemControls": []
+            },
+            {
+                "name": "aws-otel-collector",
+                "image": "public.ecr.aws/aws-observability/aws-otel-collector:v0.41.1",
+                "cpu": 0,
+                "portMappings": [
+                    {
+                        "containerPort": 4317,
+                        "hostPort": 4317,
+                        "protocol": "tcp",
+                        "name": "aws-otel-collector-4317-tcp"
+                    }
+                ],
+                "essential": true,
+                "command": [
+                    "--config=/etc/ecs/ecs-xray.yaml"
+                ],
+                "environment": [],
+                "mountPoints": [],
+                "volumesFrom": [],
+                "logConfiguration": {
+                    "logDriver": "awslogs",
+                    "options": {
+                        "awslogs-group": "/ecs/ecs-aws-otel-sidecar-collector",
+                        "mode": "non-blocking",
+                        "awslogs-create-group": "true",
+                        "max-buffer-size": "25m",
+                        "awslogs-region": "ap-northeast-2",
+                        "awslogs-stream-prefix": "ecs"
+                    }
+                },
+                "systemControls": []
+            }
+        ],
+        "family": "product-service-task",
+        "taskRoleArn": "arn:aws:iam::026090537156:role/ecsTaskExecutionRole",
+        "executionRoleArn": "arn:aws:iam::026090537156:role/ecsTaskExecutionRole",
+        "networkMode": "awsvpc",
+        "revision": 96,
+        "volumes": [],
+        "status": "ACTIVE",
+        "requiresAttributes": [
+            {
+                "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+            },
+            {
+                "name": "ecs.capability.execution-role-awslogs"
+            },
+            {
+                "name": "com.amazonaws.ecs.capability.ecr-auth"
+            },
+            {
+                "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+            },
+            {
+                "name": "com.amazonaws.ecs.capability.docker-remote-api.1.28"
+            },
+            {
+                "name": "com.amazonaws.ecs.capability.task-iam-role"
+            },
+            {
+                "name": "ecs.capability.execution-role-ecr-pull"
+            },
+            {
+                "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+            },
+            {
+                "name": "ecs.capability.task-eni"
+            },
+            {
+                "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+            }
+        ],
+        "placementConstraints": [],
+        "compatibilities": [
+            "EC2",
+            "FARGATE"
+        ],
+        "runtimePlatform": {
+            "cpuArchitecture": "ARM64",
+            "operatingSystemFamily": "LINUX"
+        },
+        "requiresCompatibilities": [
+            "FARGATE"
+        ],
+        "cpu": "1024",
+        "memory": "3072",
+        "registeredAt": "2024-12-09T21:19:37.641000+09:00",
+        "registeredBy": "arn:aws:iam::026090537156:user/deploy-test"
+    },
+    "tags": []
+}
