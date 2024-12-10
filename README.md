@@ -1,5 +1,3 @@
-# 무신사 백엔드 과제
-지원자: 박준기(junkipark430@gmail.com)
 ## 기술스택
 - 언어 및 프레임워크
   - Java 17, Spring Boot 3.3
